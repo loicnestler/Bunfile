@@ -7,7 +7,9 @@ const ensureArray = (stringOrArray: string | string[]) =>
 
 const preparePlugins = (plugins: string[]) =>
   Promise.all(
-    plugins.map(plugin => import(plugin).then(mod => mod.default as BunPlugin))
+    plugins.map(plugin =>
+      import(plugin).then(mod => mod.default() as BunPlugin)
+    )
   )
 
 export const prepareConfig = async (config: BuildConfig) =>
