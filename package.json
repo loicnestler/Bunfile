@@ -7,7 +7,8 @@
     "bunfile": "dist/bunfile.js"
   },
   "scripts": {
-    "build": "bun run src/index.ts"
+    "build": "bun run src/index.ts",
+    "publish": "bun run build && npm publish"
   },
   "devDependencies": {
     "@types/minimist": "^1.2.3",
