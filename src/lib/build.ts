@@ -1,6 +1,24 @@
-import { BuildOutput } from 'bun'
+import { BuildConfig, BuildOutput, BunPlugin } from 'bun'
 
 import chalk from 'chalk'
+
+const ensureArray = (stringOrArray: string | string[]) =>
+  Array.isArray(stringOrArray) ? stringOrArray : [stringOrArray]
+
+const preparePlugins = (plugins: string[]) =>
+  Promise.all(
+    plugins.map(plugin => import(plugin).then(mod => mod.default as BunPlugin))
+  )
+
+export const prepareConfig = async (config: BuildConfig) =>
+  ({
+    ...config,
+    entrypoints: ensureArray(config.entrypoints ?? 'src/index.ts'),
+    outdir: config.outdir ?? 'dist',
+    plugins: await preparePlugins(
+      ensureArray((config.plugins as unknown as string[]) ?? [])
+    ),
+  } as BuildConfig)
 
 export const build = (promise: Promise<BuildOutput>) => {
   const start = Date.now()

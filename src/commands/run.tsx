@@ -1,6 +1,6 @@
 import type { ParsedArgs } from 'minimist'
 import type { BuildConfig } from 'bun'
-import { build } from '../lib/build'
+import { build, prepareConfig } from '../lib/build'
 
 export const runCommand = async (argv: ParsedArgs) => {
   const cwd = process.cwd()
@@ -11,7 +11,7 @@ export const runCommand = async (argv: ParsedArgs) => {
 
   const buildTarget = argv._.shift() ?? 'default'
 
-  const buildConfig = bunfile[buildTarget]
+  const buildConfig = await prepareConfig(bunfile[buildTarget])
 
   if (!buildConfig) {
     throw new Error(`Build target '${buildTarget}' not found`)
