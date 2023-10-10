@@ -1,3 +1,4 @@
+#!/usr/bin/env bun
 import Argv from 'minimist'
 import { buildCommand } from './commands/build'
 
