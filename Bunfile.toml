@@ -1,0 +1,4 @@
+[default]
+entrypoints = ["src/index.ts"]
+outdir = "dist"
+outfile = "bunfile.js"

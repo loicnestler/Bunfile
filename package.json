@@ -1,0 +1,22 @@
+{
+  "name": "bunfile",
+  "module": "src/index.ts",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "bunfile": "dist/bunfile.js"
+  },
+  "scripts": {
+    "build": "bun run src/index.ts"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.3",
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "minimist": "^1.2.8"
+  }
+}
