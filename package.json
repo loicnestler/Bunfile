@@ -3,7 +3,9 @@
   "module": "src/index.ts",
   "version": "0.1.5",
   "type": "module",
-  "bin": "dist/bunfile.js",
+  "bin": {
+    "bunfile": "dist/bunfile.js"
+  },
   "scripts": {
     "build": "bun run src/index.ts"
   },
@@ -15,6 +17,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "del": "^7.1.0",
     "minimist": "^1.2.8"
   }
 }

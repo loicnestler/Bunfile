@@ -2,7 +2,7 @@ import type { ParsedArgs } from 'minimist'
 import type { BuildConfig } from 'bun'
 import { build, prepareConfig } from '../lib/build'
 
-export const runCommand = async (argv: ParsedArgs) => {
+export const buildCommand = async (argv: ParsedArgs) => {
   const cwd = process.cwd()
 
   const bunfile = (await import(cwd + '/' + 'Bunfile.toml').then(

@@ -1,16 +1,12 @@
 import Argv from 'minimist'
-import chalk from 'chalk'
-import { runCommand } from './commands/run'
+import { buildCommand } from './commands/build'
 
 const argv = Argv(process.argv.slice(2))
 
 const commandMap = {
-  run: runCommand,
-  //   help: runCommand,
+  build: buildCommand,
 } as const
 
-const command: keyof typeof commandMap = (argv._[0] ?? 'run') as any
-
-argv._.shift()
+const command: keyof typeof commandMap = (argv._.shift() ?? 'build') as any
 
 await commandMap[command](argv)
